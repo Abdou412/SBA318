@@ -1,0 +1,16 @@
+{
+  "name": "sba-318",
+  "version": "1.0.0",
+  "main": "abdou.js",
+  "scripts": {
+    "start" : "nodemon abdou.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  }
+}

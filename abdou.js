@@ -7,6 +7,7 @@ const myarray = [
   "stay positive",
   "you are a great man and wonderful instructor",
   { name: "mohamed", id: 124 },
+  { name: "dannielle", id: 181 },
 ];
 function mytest(req, res, next) {
   console.log("you are very welcome");
@@ -21,15 +22,43 @@ app.get("/grt", (req, res) => {
   res.send(`<h1>${random}</h1>`);
 });
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("you made a mistake");
-});
+
 
 const users = require("./catagories/user");
 app.get("/users", (req, res) => {
   res.json(users);
 });
+     
+
+app.delete("/user/:id", (req,res)=>{
+const id_user = parseInt(req.params.id);
+const userindex = users.findIndex(user=>user.id === id_user);
+
+if (userindex !==-1 ){
+const deleted_user = users.splice(userindex,1);
+res.send(`user with id ${deleted_user[0].id} and name ${deleted_user[0].name} was deleted`);
+
+
+
+}else{res.status(404).send("we could'nt foud that user abdou")}
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const posts = require("./catagories/posts");
 

@@ -21,10 +21,10 @@ app.get("/grt", (req, res) => {
   res.send(`<h1>${random}</h1>`);
 });
 
-// app.use((err, req, res, next) => {
-//   console.error(err.stack);
-//   res.status(500).send("you made a mistake");
-// });
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("you made a mistake");
+});
 
 const users = require("./catagories/user");
 app.get("/users", (req, res) => {
@@ -37,16 +37,14 @@ app.post("/user", (req, res) => {
   res.json(posts);
 });
 
-app.put("/user/:id", (req, res) => {
-  const userid = parseInt(req.params.id);
-  const updated = req.body;
-  const find = myarray.find((u) => u.id === userid);
-  if (find) {
-    find.name = updated.name;
-    res.send(`user ${userid} updated to ${find.name}`);
-  } else {
-    res.status(404).send("oh abdou user not found ");
+app.put("/update_id", (req, res) => {
+  const { name, updated_id } = req.body;
+  const userName = myarray.find((u) => u.name === name);
+  if (userName) {
+    userName.id = updated_id;
+    res.send(`user id fore ${name} was updated by abdou to ${updated_id}`);
   }
+  else{res.status(404).send("oh man, there is no user with that id")}
 });
 
 app.listen(PORT, () => {

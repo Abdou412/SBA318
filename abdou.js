@@ -29,6 +29,11 @@ app.get("/users",(req,res)=>{
 res.json(users)
 })
 
+const posts = require("./catagories/posts")
+
+app.post("/user",(req,res)=>{
+    res.json(posts)
+})
 app.listen(PORT, () => {
   console.log("hello abdou");
 });

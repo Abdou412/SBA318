@@ -12,18 +12,22 @@ function mytest(req, res, next) {
 }
 app.use(mytest);
 app.get("/", (req, res) => {
-  res.send(`<h1>WELCOM THE THE MAIN PAGE</h1>`);
+  res.send(`<h1>WELCOM TO THE MAIN PAGE</h1>`);
 });
 app.get("/grt", (req, res) => {
   const random = myarray[Math.floor(Math.random() * myarray.length)];
   res.send(`<h1>${random}</h1>`);
 });
 
-app.use((err, rer, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("you made a mistake");
-});
+// app.use((err, req, res, next) => {
+//   console.error(err.stack);
+//   res.status(500).send("you made a mistake");
+// });
 
+const users = require("./catagories/user");
+app.get("/users",(req,res)=>{
+res.json(users)
+})
 
 app.listen(PORT, () => {
   console.log("hello abdou");

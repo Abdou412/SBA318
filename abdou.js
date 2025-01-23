@@ -9,7 +9,7 @@ const myarray = [
 function mytest(req, res, next) {
   console.log("you are very welcome");
   next();
-}
+} 
 app.use(mytest);
 app.get("/", (req, res) => {
   res.send(`<h1>WELCOM TO THE MAIN PAGE</h1>`);
